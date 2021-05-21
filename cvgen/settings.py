@@ -10,7 +10,7 @@ SECRET_KEY = 'rrt*(*84&mh@*-ggh4j)jb^hs06=wzn&zhsqypzjzew^gab+34'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['localhost','127.0.0.1']
+ALLOWED_HOSTS = ['whr2.eu.pythonanywhere.com']
 
 # Application definition
 
@@ -97,7 +97,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 #STATICFILES_DIRS = [BASE_DIR / 'static',]
 STATIC_ROOT = BASE_DIR / 'static'
-
+print(STATIC_ROOT)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
