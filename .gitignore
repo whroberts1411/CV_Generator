@@ -4,6 +4,7 @@
 *.pyc
 __pycache__
 media
+local_settings.py
 
 # Backup files #
 *.bak
