@@ -1,0 +1,73 @@
+
+{% extends 'base.html' %}
+
+{% block title %}
+    Your Details
+{% endblock title %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="container">
+    <h1 class="text-info text-center my-4">Generate Your PDF CV</h1>
+    <h4 class="text-secondary text-center mb-3">
+        Enter your CV details below, and click the Submit button to save them...
+    </h4>
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                      <label class="font-weight-bold" for="name">Name:</label>
+                      <input type="text" class="form-control form-control-sm" id="name" name="name" required=True>
+                  </div>
+                  <div class="form-group col-md-6">
+                      <label class="font-weight-bold" for="email">Email:</label>
+                      <input type="email" class="form-control form-control-sm" id="email" name="email" required=True>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label class="font-weight-bold" for="phone">Phone:</label>
+                    <input type="text" class="form-control form-control-sm" id="phone" name="phone" required=True>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label class="font-weight-bold" for="mobile">Mobile:</label>
+                    <input type="text" class="form-control form-control-sm" id="mobile" name="mobile">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="font-weight-bold" for="summary">About You:</label>
+                    <textarea type="text" class="form-control form-control-sm" id="summary" name="summary" required=True></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="font-weight-bold" for="school">School:</label>
+                    <textarea type="text" class="form-control form-control-sm" id="school" name="school"></textarea>
+                </div>
+                <div class="form-group">
+                  <label class="font-weight-bold" for="university">University:</label>
+                  <textarea type="text" class="form-control form-control-sm" id="university" name="university"></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="font-weight-bold" for="degree">Degree:</label>
+                    <textarea type="text" class="form-control form-control-sm" id="degree" name="degree"></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="font-weight-bold" for="previous_work">Employment History:</label>
+                      <textarea type="text" class="form-control form-control-sm" id="previous_work" name="previous_work"></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label class="font-weight-bold" for="skills">Skills:</label>
+                      <textarea type="text" class="form-control form-control-sm" id="skills" name="skills"></textarea>
+                  </div>
+
+                <button type="submit" class="btn btn-outline-info my-5 btn-block">Submit your CV</button>
+              </form>
+
+        </div>
+    </div>
+</div>
+{% endblock content %}

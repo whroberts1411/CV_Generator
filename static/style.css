@@ -1,0 +1,40 @@
+body {
+    background-color: ghostwhite;
+}
+/* Constrain the maximum size of the product images */
+.cardimg {
+    max-height: 250px;
+    max-width: 250px
+}
+/* Set menu link items to text.info colour */
+nav .navbar-nav li a{
+    color: #5bc0de !important;
+    }
+/* Set menu link item hover to text.warning colour */
+nav .navbar-nav li a:hover{
+    color:#f0ad4e  !important;
+    }
+
+.mylogo {
+    width:40px;
+    height: 40px;
+}
+/* Main Page Body - set up background image and overlay */
+
+#mainBlock {
+    background: url(background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    width: 100%;
+    min-height: 1000px;
+}
+
+#mainBlock .dark-overlay {
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    min-height: 1000px;
+    background: rgba(255,255,255,0.93);
+    background-attachment: fixed;
+}

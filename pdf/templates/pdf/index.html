@@ -1,0 +1,59 @@
+
+{% extends 'base.html' %}
+
+{% block title %}
+    Introduction
+{% endblock title %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+    <h1 class="text-info text-center my-4">Create an online CV</h1>
+    <hr>
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <p class="mt-md-5">
+                This site provides a number of options for handling your contact details,
+                personal educational and employment history, and for recording all your
+                relevant job skills.
+            </p>
+            <p>
+                <ul>
+                    <li>
+                        Go to the 'Enter Details' page from the menu bar at the top of
+                        the screen. From here, you can enter all your contact details
+                        and other details that you want to be included on your CV. Once
+                        you are happy with the information, your CV will be stored on
+                        an internal database.<br><br>
+                    </li>
+                    <li>
+                        To browse through all the CVs that are stored on the database,
+                        go to the 'CV List' option from the menu bar. This screen will
+                        display a list of available CVs (just the name and a few details),
+                        with options to either create a pdf version of the CV, or
+                        display it for editing.<br><br>
+                    </li>
+                    <li>
+                        Depending on the size of your CV, producing the final pdf file and
+                        downloading it may take a few seconds, but you'll be notified when
+                        it has completed. Your browser settings will determine what happens
+                         to the pdf CV
+                        after it has been produced. For example, Firefox may display a
+                        dialogue box giving the options to save or display the file.
+                        Other browsers may just download it to your local machine automatically.
+                        It's all down to the way you've configured your browser...<br><br>
+                    </li>
+                    <li>
+                        You're not limited to storing a single CV - you can create and
+                        store as many as you like. You could have one for your main area
+                        of employment, and another for charity work that you do, for
+                        example. <br><br>
+                    </li>
+                </ul>
+            </p>
+        </div>
+    </div>
+    <hr>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,73 @@
+
+{% extends 'base.html' %}
+
+{% block title %}
+    Update CV
+{% endblock title %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="container">
+    <h1 class="text-info text-center my-4">Update Your CV Details</h1>
+    <h4 class="text-secondary text-center mb-3">
+        Change the required details, and click the Submit button to update them...
+    </h4>
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                      <label class="font-weight-bold" for="name">Name:</label>
+                      <input type="text" class="form-control form-control-sm" id="name" name="name" required=True value="{{ cv.name }}">
+                  </div>
+                  <div class="form-group col-md-6">
+                      <label class="font-weight-bold" for="email">Email:</label>
+                      <input type="email" class="form-control form-control-sm" id="email" name="email" required=True value ="{{ cv.email }}">
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label class="font-weight-bold" for="phone">Phone:</label>
+                    <input type="text" class="form-control form-control-sm" id="phone" name="phone" required=True value ="{{ cv.phone }}">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label class="font-weight-bold" for="mobile">Mobile:</label>
+                    <input type="text" class="form-control form-control-sm" id="mobile" name="mobile" value ="{{ cv.mobile }}">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="font-weight-bold" for="summary">About You:</label>
+                    <textarea type="text" class="form-control form-control-sm" id="summary" name="summary" required=True rows=5>{{ cv.summary }}</textarea>
+                </div>
+                <div class="form-group">
+                    <label class="font-weight-bold" for="school">School:</label>
+                    <textarea type="text" class="form-control form-control-sm" id="school" name="school">{{ cv.school }}</textarea>
+                </div>
+                <div class="form-group">
+                  <label class="font-weight-bold" for="university">University:</label>
+                  <textarea type="text" class="form-control form-control-sm" id="university" name="university">{{ cv.university }}</textarea>
+                </div>
+                <div class="form-group">
+                    <label class="font-weight-bold" for="degree">Degree:</label>
+                    <textarea type="text" class="form-control form-control-sm" id="degree" name="degree">{{ cv.degree }}</textarea>
+                </div>
+                <div class="form-group">
+                    <label class="font-weight-bold" for="previous_work">Employment History:</label>
+                      <textarea type="text" class="form-control form-control-sm" id="previous_work" name="previous_work" rows=5>{{ cv.previous_work }}</textarea>
+                  </div>
+                  <div class="form-group">
+                    <label class="font-weight-bold" for="skills">Skills:</label>
+                      <textarea type="text" class="form-control form-control-sm" id="skills" name="skills" rows=5>{{ cv.skills }}</textarea>
+                  </div>
+
+                <button type="submit" class="btn btn-outline-success my-5 btn-block">Update your CV</button>
+              </form>
+
+        </div>
+    </div>
+</div>
+{% endblock content %}

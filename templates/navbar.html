@@ -1,0 +1,39 @@
+
+{% load static %}
+
+<nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark">
+
+    <!-- Branding for the navbar - icon and company/website name, for example -->
+    <a class="navbar-brand" href="#"><img class="mylogo" src="{% static 'logo.ico' %}"
+        alt="logo" /></a>
+    <span class="px-2 text-warning">Online CV Generator</span>
+
+     <!-- This is the button that's displayed for a narrow screen e.g. a smartphone. -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- This defines the navigation elements, as an unordered list. -->
+    <div class="collapse navbar-collapse" id="navbarMenu">
+        <!-- ml-auto shifts the menu items to the right of the bar (ml = margin-left) -->
+        <ul class="navbar-nav ml-auto"  >
+            <li class="nav-item" >
+                <a class="nav-link" href="{% url 'index' %}">Home</a>
+            </li>
+            <li class="nav-item" >
+                <a class="nav-link" href="{% url 'accept' %}">Enter Details</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'list' %}">CV List</a>
+            </li>
+
+             <li class="nav-item">
+                <a class="nav-link" href="{% url 'admin:index' %}"
+                    target="_blank">Admin</a>
+            </li>
+         </ul>
+    </div>
+
+</nav>
+
+<br><br><br>
