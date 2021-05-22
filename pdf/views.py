@@ -4,6 +4,7 @@ import pdfkit
 from django.http import HttpResponse
 from django.template import loader
 import io
+from pyvirtualdisplay import Display
 
 #------------------------------------------------------------------------------
 def index(request):
@@ -46,6 +47,7 @@ def cv(request, id):
     fullname = profile.name.replace(' ','_')
     filename = fullname + '_CV.pdf'
 
+    disp = Display().start()
     template = loader.get_template('pdf/cv.html')
     html = template.render({'profile':profile})
     options = {
@@ -56,6 +58,8 @@ def cv(request, id):
     pdf = pdfkit.from_string(html, False, options)
     response = HttpResponse(pdf, content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename=' + filename
+    disp.stop()
+    
     return response
 
 #------------------------------------------------------------------------------

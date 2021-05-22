@@ -3,9 +3,11 @@
 *.pot
 *.pyc
 __pycache__
-media
 local_settings.py
-
+db.sqlite3
+*.original
+*.Original
+*.ORIGINAL
 # Backup files #
 *.bak
 
