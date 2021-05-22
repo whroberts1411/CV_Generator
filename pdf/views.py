@@ -4,7 +4,6 @@ import pdfkit
 from django.http import HttpResponse
 from django.template import loader
 import io
-from pyvirtualdisplay import Display
 
 #------------------------------------------------------------------------------
 def index(request):
@@ -43,24 +42,24 @@ def cv(request, id):
     """ Format the cv details for the requested individual for conversion
         to a pdf document. Download it to the caller's PC when done. """
 
+    from pyvirtualdisplay import Display
+
     profile = Profile.objects.get(pk=id)
     fullname = profile.name.replace(' ','_')
     filename = fullname + '_CV.pdf'
 
-    disp = Display().start()
-    template = loader.get_template('pdf/cv.html')
-    html = template.render({'profile':profile})
-    options = {
-        'enable-local-file-access': None,
-        'page-size':'A4',
-        'encoding':'UTF-8',
-    }
-    pdf = pdfkit.from_string(html, False, options)
-    response = HttpResponse(pdf, content_type='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename=' + filename
-    disp.stop()
-    
-    return response
+    with Display():
+        template = loader.get_template('pdf/cv.html')
+        html = template.render({'profile':profile})
+        options = {
+            'enable-local-file-access': None,
+            'page-size':'A4',
+            'encoding':'UTF-8',
+        }
+        pdf = pdfkit.from_string(html, False, options)
+        response = HttpResponse(pdf, content_type='application/pdf')
+        response['Content-Disposition'] = 'attachment; filename=' + filename
+        return response
 
 #------------------------------------------------------------------------------
 def list(request):
