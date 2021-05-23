@@ -58,7 +58,8 @@ def cv(request, id):
         }
         pdf = pdfkit.from_string(html, False, options)
         response = HttpResponse(pdf, content_type='application/pdf')
-        response['Content-Disposition'] = 'attachment; filename=' + filename
+        #response['Content-Disposition'] = 'attachment; filename=' + filename
+        response['Content-Disposition'] = 'inline; filename=' + filename
         return response
 
 #------------------------------------------------------------------------------
