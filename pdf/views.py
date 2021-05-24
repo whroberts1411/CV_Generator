@@ -54,8 +54,7 @@ def cv(request, id):
 
     html_string = render_to_string('pdf/cv.html',{'profile':profile})
     html = HTML(string=html_string)
-    pdf = html.write_pdf(stylesheets=[CSS(css),
-    'https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css'])
+    pdf = html.write_pdf(stylesheets=[CSS(css)])
     response = HttpResponse(pdf, content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename=' + filename
     return response
