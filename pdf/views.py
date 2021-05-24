@@ -1,10 +1,11 @@
+
 from django.shortcuts import redirect, render
 from .models import Profile
-import pdfkit
 from django.http import HttpResponse
 from django.template import loader
 import io
-from django_renderpdf.views import PDFView
+from weasyprint import HTML
+from django.template.loader import render_to_string
 
 #------------------------------------------------------------------------------
 def index(request):
@@ -40,42 +41,20 @@ def accept(request):
 
 #------------------------------------------------------------------------------
 def cv(request, id):
-    """ Format the cv details for the requested individual for conversion
-        to a pdf document. Download it to the caller's PC when done. """
-
-    from pyvirtualdisplay import Display
+    """ Populate the CV template, convert it to a pdf format and download
+        it to the user's machine (or display a dialogue box, depending on the
+        way the browser has been configured)   """
 
     profile = Profile.objects.get(pk=id)
     fullname = profile.name.replace(' ','_')
     filename = fullname + '_CV.pdf'
 
-    with Display():
-        template = loader.get_template('pdf/cv.html')
-        html = template.render({'profile':profile})
-        options = {
-            'enable-local-file-access': None,
-            'page-size':'A4',
-            'encoding':'UTF-8',
-        }
-        pdf = pdfkit.from_string(html, False, options)
-        response = HttpResponse(pdf, content_type='application/pdf')
-        #response['Content-Disposition'] = 'attachment; filename=' + filename
-        response['Content-Disposition'] = 'inline; filename=' + filename
-        return response
-
-#------------------------------------------------------------------------------
-class CvView(PDFView):
-    """ PDF processing using django-renderpdf """
-
-    template_name= 'pdf/cv.html'
-    prompt_download = True
-    download_name = 'mycv.pdf'
-    
-    def get_context_data(self, *args, **kwargs):
-
-        context = super().get_context_data(*args, **kwargs)
-        context['profile'] = Profile.objects.get(pk=kwargs['id'],)
-        return context
+    html_string = render_to_string('pdf/cv.html',{'profile':profile})
+    html = HTML(string=html_string)
+    pdf = html.write_pdf()
+    response = HttpResponse(pdf, content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename=' + filename
+    return response
 
 #------------------------------------------------------------------------------
 def list(request):
