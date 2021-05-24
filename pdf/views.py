@@ -47,6 +47,7 @@ def cv(request, id):
 
     from django.conf import settings
     css = str(settings.BASE_DIR) + '/static/' + 'style.css'
+    bootstrap = str(settings.BASE_DIR) + '/static/' + 'bootstrap.min.css'
 
     profile = Profile.objects.get(pk=id)
     fullname = profile.name.replace(' ','_')
@@ -54,7 +55,7 @@ def cv(request, id):
 
     html_string = render_to_string('pdf/cv.html',{'profile':profile})
     html = HTML(string=html_string)
-    pdf = html.write_pdf(stylesheets=[CSS(css)])
+    pdf = html.write_pdf(stylesheets=[CSS(css), CSS(bootstrap)])
     response = HttpResponse(pdf, content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename=' + filename
     return response
