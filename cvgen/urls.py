@@ -10,9 +10,10 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('index/', views.index, name='index'),
     path('accept/', views.accept, name='accept'),
-    path('cv/<int:id>/', views.cv, name='cv'),
+    #path('cv/<int:id>/', views.cv, name='cv'),
     path('list/', views.list, name='list'),
     path('update/<int:id>/', views.update, name='update'),
+    path('cv/<int:id>/', views.CvView.as_view(), name='cv'),
 
 ]
 

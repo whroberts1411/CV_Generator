@@ -4,6 +4,7 @@ import pdfkit
 from django.http import HttpResponse
 from django.template import loader
 import io
+from django_renderpdf.views import PDFView
 
 #------------------------------------------------------------------------------
 def index(request):
@@ -61,6 +62,20 @@ def cv(request, id):
         #response['Content-Disposition'] = 'attachment; filename=' + filename
         response['Content-Disposition'] = 'inline; filename=' + filename
         return response
+
+#------------------------------------------------------------------------------
+class CvView(PDFView):
+    """ PDF processing using django-renderpdf """
+
+    template_name= 'pdf/cv.html'
+    prompt_download = True
+    download_name = 'mycv.pdf'
+    
+    def get_context_data(self, *args, **kwargs):
+
+        context = super().get_context_data(*args, **kwargs)
+        context['profile'] = Profile.objects.get(pk=kwargs['id'],)
+        return context
 
 #------------------------------------------------------------------------------
 def list(request):
