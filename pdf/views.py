@@ -4,7 +4,7 @@ from .models import Profile
 from django.http import HttpResponse
 from django.template import loader
 import io
-from weasyprint import HTML
+from weasyprint import HTML, CSS
 from django.template.loader import render_to_string
 
 #------------------------------------------------------------------------------
@@ -45,13 +45,17 @@ def cv(request, id):
         it to the user's machine (or display a dialogue box, depending on the
         way the browser has been configured)   """
 
+    from django.conf import settings
+    css = str(settings.BASE_DIR) + '/static/' + 'style.css'
+
     profile = Profile.objects.get(pk=id)
     fullname = profile.name.replace(' ','_')
     filename = fullname + '_CV.pdf'
 
     html_string = render_to_string('pdf/cv.html',{'profile':profile})
     html = HTML(string=html_string)
-    pdf = html.write_pdf()
+    pdf = html.write_pdf(stylesheets=[CSS(css),
+    'https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css'])
     response = HttpResponse(pdf, content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename=' + filename
     return response
