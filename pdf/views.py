@@ -43,7 +43,7 @@ def accept(request):
 def cv(request, id):
     """ Populate the CV template, convert it to a pdf format and download
         it to the user's machine (or display a dialogue box, depending on the
-        way the browser has been configured)   """
+        way the browser has been configured).   """
 
     from django.conf import settings
     css = str(settings.BASE_DIR) + '/static/' + 'style.css'
@@ -55,6 +55,11 @@ def cv(request, id):
 
     html_string = render_to_string('pdf/cv.html',{'profile':profile})
     html = HTML(string=html_string)
+
+    # When hosted on PythonAnywhere, Weasyprint needs to know where the
+    # stylesheets are. Couldn't get it to work with the cdn, so included a
+    # local downloaded copy from the Bootstrap website. It now works!!
+
     pdf = html.write_pdf(stylesheets=[CSS(css), CSS(bootstrap)])
     response = HttpResponse(pdf, content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename=' + filename

@@ -38,3 +38,12 @@ nav .navbar-nav li a:hover{
     background: rgba(255,255,255,0.93);
     background-attachment: fixed;
 }
+
+.cv {
+    font-size: 12px;
+}
+
+@page {
+    size: A4;
+    margin: 1.5cm;
+}

@@ -9,26 +9,48 @@
 
 {% block content %}
 
-    <h3 class="my-4 text-center">My Curriculum Vitae, {% now "jS F Y " %}</h3>
-    <h3 class="text-center font-italic mb-4">{{ profile.name }}</h3>
-    <h5>Email  : {{ profile.email }}</h5>
-    <h5>Phone  : {{ profile.phone }}</h5>
-    <h5>Mobile : {{ profile.mobile }}</h5>
+    <h4 class="my-4 text-center">My Curriculum Vitae, {% now "jS F Y " %}</h4>
+    <h5 class="text-center font-italic mb-4">{{ profile.name }}</h5>
+    
+    <h6>Email  : {{ profile.email }}</h6>
+    <h6>Phone  : {{ profile.phone }}</h6>
+    <h6>Mobile : {{ profile.mobile }}</h6>
     <hr>
-    <h5>About Me</h5>
-    <p>{{ profile.summary|safe }}</p>
+
+    <h6>About Me</h6>
+    <div class="cv">
+        <p>{{ profile.summary|safe }}</p>
+    </div>
     <hr>
-    <b>School</b> : {{ profile.school }}
+
+    <h6>School</h6>
+    <div class="cv">
+        <p>{{ profile.school|safe }}</p>
+    </div>
     <hr>
-    <b>University</b> : {{ profile.university }}
+
+    <h6>University</h6>
+    <div class="cv">
+        <p>{{ profile.university|safe }}</p>
+    </div>
     <hr>
-    <b>Degree</b> : {{ profile.degree }}
+
+    <h6>Degree</h6>
+    <div class="cv">
+        <p>{{ profile.degree|safe }}</p>
+    </div>
     <hr>
-    <h5>Employment History</h5>
-    <p>{{ profile.previous_work|safe }}</p>
+
+    <h6>Employment History</h6>
+    <div class="cv">
+        <p>{{ profile.previous_work|safe }}</p>
+    </div>
     <hr>
-    <h5>Skills</h5>
-    <p>{{ profile.skills|safe }}</p>
-<hr>
+
+    <h6>Skills</h6>
+    <div  class="cv">
+        <p>{{ profile.skills|safe }}</p>
+    </div>
+    <hr>
 
 {% endblock content %}
